@@ -1,0 +1,16 @@
+api_key.txt
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+tmdb-cli
+
+vendor/
+*.test
+*.out
+
+.idea/
+.vscode/
+*.swp
