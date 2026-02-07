@@ -6,6 +6,7 @@ api_key.txt
 *.so
 *.dylib
 tmdb-cli
+tmdb-cli.exe
 
 vendor/
 *.test

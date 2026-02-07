@@ -6,25 +6,11 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"tmdb-cli/models"
 )
 
-type Movie struct {
-	Title       string  `json:"title"`
-	VoteAverage float64 `json:"vote_average"`
-	Overview    string  `json:"overview"`
-}
-
-type MovieResponse struct {
-	Results []Movie `json:"results"`
-}
-
-type validApi struct {
-	Message string `json:"status_message"`
-	Success bool   `json:"success"`
-}
-
-func FetchMovies(apiKey string) ([]Movie, error) {
-	var data MovieResponse
+func FetchMovies(apiKey string) ([]models.Movie, error) {
+	var data models.MovieResponse
 	resp, err := http.Get(apiKey)
 	if err != nil {
 		fmt.Println("Error", err)
@@ -42,7 +28,7 @@ func FetchMovies(apiKey string) ([]Movie, error) {
 }
 
 func CheckApiKey(fileNameWApi string) string {
-	var validApi validApi
+	var validApi models.ValidApi
 	validApi.Success = true
 	apiKey, err := os.ReadFile(fileNameWApi)
 	if err != nil {
@@ -51,8 +37,7 @@ func CheckApiKey(fileNameWApi string) string {
 
 		return ""
 	}
-	url := "https://api.themoviedb.org/3/configuration?api_key=" + string(apiKey)
-	fmt.Println(url)
+	url := "https://api.themoviedb.org/3/movie/popular?api_key=" + string(apiKey)
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Println("Error", err)
@@ -69,8 +54,6 @@ func CheckApiKey(fileNameWApi string) string {
 	if !validApi.Success {
 		fmt.Println(validApi.Message)
 		return ""
-	} else {
-		fmt.Println("API Key is valid")
 	}
 
 	return string(apiKey)
