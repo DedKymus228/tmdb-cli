@@ -13,7 +13,7 @@ A simple command-line interface (CLI) tool for fetching movie information from t
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/YOUR_USERNAME/tmdb-cli.git](https://github.com/YOUR_USERNAME/tmdb-cli.git)
+git clone https://github.com/DedKymus228/tmdb-cli.git
 cd tmdb-cli
 
 # 2. Build the application
